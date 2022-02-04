@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/editor/editor.main.css" />
+	</head>
+	<body>
+		<h2>テスト</h2>
+		<div id="container" style="width: 50%; height: 50vh; border: 1px solid grey"></div>
+		<script>
+			self.require = {
+				paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs' },
+				'vs/nls': { availableLanguages: { '*': 'ja' } }
+			};
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/loader.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/editor/editor.main.nls.ja.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/editor/editor.main.js"></script>
+		<script>
+			const editor = monaco.editor.create(document.getElementById('container'), {
+				value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+				language: 'javascript'
+			});
+		</script>
+		<iframe src="" width="" height="" sandbox="allow-scripts"></iframe>
+		<button type="button" id="run">Run</button>
+		<script type="module">
+			import {evalCode} from "./eval.js";
+			document.querySelector("#run").addEventListener("click", ()=>{
+				evalCode(document.querySelector("iframe"), editor.getValue())
+			})
+		</script>
+	</body>
+</html>
