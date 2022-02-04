@@ -20,12 +20,10 @@ export function evalCode(frame, code) {
 							document.body.appendChild(div)
 						}
 						window.addEventListener("error", (e)=>{
-							console.error(e)
-							output(event.type + ": " + event.message, "error")
+							output("[" + event.type + "] " + event.message, "error")
 						})
 						window.addEventListener("unhandledrejection", (e)=>{
-							console.error(e)
-							output(event.type + ": " + event.message, "error")
+							output("[" + event.type + "] " + event.reason, "error")
 						})
 						console.assert = (assert, ...msgs)=>assert||output(
 							"assertion error: "+ msgs.join(" "),
