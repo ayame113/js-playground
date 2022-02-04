@@ -10,7 +10,9 @@ Deno.test({
       const response = await fetch("http://localhost:8000/");
       assertEquals(
         await response.text(),
-        'Hello World from <a href="https://github.com/ayame113/deno_deploy_template">ayame113/deno_deploy_template</a> !',
+        await Deno.readTextFile(
+          new URL("./static/index.html", import.meta.url),
+        ),
       );
       assertEquals(
         response.headers.get("content-type"),

@@ -16,9 +16,14 @@ interface Listener {
 export const listeners: Listener[] = [
   {
     pattern: new URLPattern({ pathname: "/" }),
-    handler: ({ request, url, pattern }) => {
+    handler: async ({ request, url, pattern }) => {
       console.log(request, url, pattern.pathname);
-      return fetch(new URL("./static/index.html", import.meta.url));
+      const res = await fetch(new URL("./static/index.html", import.meta.url));
+      return new Response(res.body, {
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+        },
+      });
     },
   },
   /*{
