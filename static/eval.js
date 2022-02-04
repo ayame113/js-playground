@@ -13,6 +13,7 @@ export function evalCode(frame, code) {
 				</head>
 				<body>
 					<script>
+						const originalConsoleLog = console.log
 						function output(str, type) {
 							const div = document.createElement("div")
 							div.classList.add(type)
@@ -20,9 +21,11 @@ export function evalCode(frame, code) {
 							document.body.appendChild(div)
 						}
 						window.addEventListener("error", (e)=>{
+							originalConsoleLog(e)
 							output("[" + event.type + "] " + event.message, "error")
 						})
 						window.addEventListener("unhandledrejection", (e)=>{
+							originalConsoleLog(e)
 							output("[" + event.type + "] " + event.reason, "error")
 						})
 						console.assert = (assert, ...msgs)=>assert||output(
