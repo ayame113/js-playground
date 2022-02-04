@@ -14,20 +14,13 @@ interface Listener {
 }
 
 export const listeners: Listener[] = [
-  // {
-  //   pattern: new URLPattern({ pathname: "/" }),
-  //   handler: ({ request, url, pattern }) => {
-  //     console.log(request, url, pattern.pathname);
-  //     return new Response(
-  //       'Hello World from <a href="https://github.com/ayame113/deno_deploy_template">ayame113/deno_deploy_template</a> !',
-  //       {
-  //         headers: {
-  //           "Content-Type": "text/html; charset=utf-8",
-  //         },
-  //       },
-  //     );
-  //   },
-  // },
+  {
+    pattern: new URLPattern({ pathname: "/" }),
+    handler: ({ request, url, pattern }) => {
+      console.log(request, url, pattern.pathname);
+      return fetch(new URL("./static/index.html", import.meta.url));
+    },
+  },
   /*{
     // Process the request when this pattern is matched.
     // See also URLPattern API:

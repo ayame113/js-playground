@@ -2,28 +2,35 @@
 <html lang="ja">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/editor/editor.main.css" />
+		<link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/editor/editor.main.css" />
 	</head>
 	<body>
-		<h2>テスト</h2>
-		<div id="container" style="width: 50%; height: 50vh; border: 1px solid grey"></div>
+		<header>
+			<h2>js playground</h2>
+		</header>
+		<main style="display: flex;">
+			<div id="editor" style="width: 50%; height: 50vh; border: 1px solid grey"></div>
+			<div id="output">
+				<button type="button" id="run">▶Run</button>
+				<iframe src="" style="width: 100%; height: calc(50vh - 30px)" width="" height="" sandbox="allow-scripts"></iframe>
+			</div>
+		</main>
+		<footer>https://github.com/ayame113/js-playground</footer>
 		<script>
 			self.require = {
-				paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs' },
+				paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs' },
 				'vs/nls': { availableLanguages: { '*': 'ja' } }
 			};
 		</script>
-		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/loader.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/editor/editor.main.nls.ja.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.21.3/min/vs/editor/editor.main.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/loader.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/editor/editor.main.nls.ja.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.31.0/min/vs/editor/editor.main.js"></script>
 		<script>
-			const editor = monaco.editor.create(document.getElementById('container'), {
-				value: ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
+			const editor = monaco.editor.create(document.getElementById('editor'), {
+				value: ['console.log("Hello world!");', ''].join('\n'),
 				language: 'javascript'
 			});
 		</script>
-		<iframe src="" width="" height="" sandbox="allow-scripts"></iframe>
-		<button type="button" id="run">Run</button>
 		<script type="module">
 			import {evalCode} from "./eval.js";
 			document.querySelector("#run").addEventListener("click", ()=>{
