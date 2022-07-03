@@ -1,4 +1,4 @@
-name: ci
+name: deno-udd
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 
 jobs:
   update-deno-dependencies:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -35,7 +36,6 @@ jobs:
             ```
             ${{ steps.run-deno-udd.outputs.UDD_RESULT }}
             ```
-            
             </div></details>
           branch: deno-udd
           author: GitHub <noreply@github.com>
