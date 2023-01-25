@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.173.0/http/server.ts";
 import * as path from "https://deno.land/std@0.173.0/path/mod.ts";
-import { contentType } from "https://deno.land/x/media_types@deprecated/mod.ts";
+import { contentType } from "https://deno.land/std@0.173.0/media_types/mod.ts";
 
 import { listeners } from "./listener.ts";
 
